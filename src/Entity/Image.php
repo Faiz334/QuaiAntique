@@ -8,9 +8,15 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+
+
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 #[Vich\Uploadable]
-class Image
+    /**
+ * @Vich\Uploadable
+ */
+
+class Image 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,7 +35,7 @@ class Image
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $updatedAt;
 
-    #[Vich\UploadableField(mapping:'gallery_images', fileNameProperty:'file')]
+    #[Vich\UploadableField(mapping:'products', fileNameProperty:'file')]
     private ?File $imageFile = null;
 
 
