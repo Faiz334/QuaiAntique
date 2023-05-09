@@ -54,19 +54,19 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
-        yield MenuItem::linkToCrud('Reservation', 'fas fa-list', Booking::class);
+        yield MenuItem::linkToCrud('Reservation', 'fas fa-person', Booking::class);
 
-        yield MenuItem::linkToCrud('La Carte', 'fas fa-list', Card::class);
+        yield MenuItem::linkToCrud('La Carte', 'fas fa-book', Card::class);
 
-        yield MenuItem::linkToCrud('Plats', 'fas fa-list', Dish::class);
+        yield MenuItem::linkToCrud('Plats', 'fas fa-cookie-bite', Dish::class);
 
         yield MenuItem::linkToCrud('Catégories', 'fas fa-list', Category::class);
 
-        yield MenuItem::linkToCrud('Menu', 'fas fa-list', Menu::class);
+        yield MenuItem::linkToCrud('Menu', 'fas fa-utensils', Menu::class);
 
-        yield MenuItem::linkToCrud('Image', 'fas fa-list', Image::class);
+        yield MenuItem::linkToCrud('Image', 'fas fa-image', Image::class);
 
-        yield MenuItem::linkToCrud('Horaires', 'fas fa-list', OpeningTime::class);
+        yield MenuItem::linkToCrud('Horaires', 'fas fa-clock', OpeningTime::class);
 
     
         if ($this->isGranted('ROLE_ADMIN')){

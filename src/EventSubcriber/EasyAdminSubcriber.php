@@ -30,18 +30,21 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     {
         $entity = $event->getEntityInstance();
 
-        if ($entity instanceof User){
+        if ($entity instanceof User
+            || $entity instanceof Image
+            || $entity instanceof OpeningTime
+            || $entity instanceof Dish
+            || $entity instanceof Menu
+            || $entity instanceof Card
+            || $entity instanceof Category
+            || $entity instanceof Booking
+        ){
             return;
         }
 
         $now = new DateTime('now');
         $entity->setCreatedAt($now);
 
-        if (!$entity instanceof Image){
-            return;
-        }
-        $now = new DateTime('now');
-        $entity->setCreatedAt($now);
     
     }
 
@@ -49,7 +52,15 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     {
         $entity = $event->getEntityInstance();
 
-        if ($entity instanceof User){
+        if ($entity instanceof User
+            || $entity instanceof Image
+            || $entity instanceof OpeningTime
+            || $entity instanceof Dish
+            || $entity instanceof Menu
+            || $entity instanceof Card
+            || $entity instanceof Category
+            || $entity instanceof Booking
+        ){
             return;
         }
 

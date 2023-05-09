@@ -25,13 +25,8 @@ class Dish
     #[ORM\Column]
     private ?float $prix = null;
 
-    #[ORM\OneToMany(mappedBy: 'dish', targetEntity: Category::class)]
-    private Collection $categorie;
-
-    public function __construct()
-    {
-        $this->categorie = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'dishes')]
+    private ?Category $categorie = null;
 
     public function getId(): ?int
     {
@@ -74,32 +69,14 @@ class Dish
         return $this;
     }
 
-    /**
-     * @return Collection<int, Category>
-     */
-    public function getCategorie(): Collection
+    public function getCategorie(): ?Category
     {
         return $this->categorie;
     }
 
-    public function addCategorie(Category $categorie): self
+    public function setCategorie(?Category $categorie): self
     {
-        if (!$this->categorie->contains($categorie)) {
-            $this->categorie->add($categorie);
-            $categorie->setDish($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategorie(Category $categorie): self
-    {
-        if ($this->categorie->removeElement($categorie)) {
-            // set the owning side to null (unless already changed)
-            if ($categorie->getDish() === $this) {
-                $categorie->setDish(null);
-            }
-        }
+        $this->categorie = $categorie;
 
         return $this;
     }

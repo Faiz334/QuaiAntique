@@ -16,8 +16,13 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\ManyToOne(inversedBy: 'categorie')]
-    private ?Dish $dish = null;
+    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Dish::class)]
+    private $dishes;
+
+    public function __construct()
+    {
+        $this->dishes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -36,14 +41,37 @@ class Category
         return $this;
     }
 
-    public function getDish(): ?Dish
+    public function __toString(): string
     {
-        return $this->dish;
+        return $this->getNom(); // ou toute autre propriété de Category que vous souhaitez afficher
     }
 
-    public function setDish(?Dish $dish): self
+    /**
+     * @return Collection<int, Dish>
+     */
+    public function getDishes(): Collection
     {
-        $this->dish = $dish;
+        return $this->dishes;
+    }
+
+    public function addDish(Dish $dish): self
+    {
+        if (!$this->dishes->contains($dish)) {
+            $this->dishes->add($dish);
+            $dish->setCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDish(Dish $dish): self
+    {
+        if ($this->dishes->removeElement($dish)) {
+            // set the owning side to null (unless already changed)
+            if ($dish->getCategorie() === $this) {
+                $dish->setCategorie(null);
+            }
+        }
 
         return $this;
     }
