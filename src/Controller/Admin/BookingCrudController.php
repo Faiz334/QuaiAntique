@@ -12,6 +12,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 
 
 
@@ -35,7 +37,9 @@ class BookingCrudController extends AbstractCrudController
                     'max' => 15
                 ]
             ]),
-            TextEditorField::new('allergy'),
+            DateField::new('date'),
+            TimeField::new('heure')->setFormat('HH:mm'),
+            TextField::new('allergy'),
         ];
     }
     

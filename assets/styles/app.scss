@@ -2,10 +2,26 @@
 
 
 body {
-    background-color: rgb(236, 235, 235);
+    background-color: rgb(43, 43, 43);
 }
 li {
     list-style-type: none;
+  }
+
+  .jumbotron {
+    background-image: url('https://www.pieuvre.ca/wp-content/uploads/2016/06/restaurant2-1.jpg');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+  }
+
+  .footer{
+    color: aliceblue;
   }
 
   .bg-image-vertical {
@@ -14,6 +30,10 @@ li {
     background-repeat: no-repeat;
     background-position: right center;
     background-size: auto 100%;
+    }
+
+    .follows-button {
+      font-size: 18px; /* Ajustez la taille de police selon vos besoins */
     }
     
     $container-max-widths: (

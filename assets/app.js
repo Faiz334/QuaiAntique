@@ -14,6 +14,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import jquery from 'jquery';
 const $ = require('jquery');
 global.$ = global.jQuery = $;
+
  
 import { Tooltip, Toast, Popover } from 'bootstrap';
 
@@ -52,4 +53,11 @@ bookingForm.addEventListener('submit', function(event) {
     }
   })
   .catch(error => console.error(error));
+});
+
+
+$(document).ready(function() {
+  $('.navbar-toggler').click(function() {
+    $('.navbar-collapse').collapse('toggle');
+  });
 });
