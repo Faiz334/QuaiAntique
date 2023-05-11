@@ -1,0 +1,18 @@
+{% extends 'base/base.html.twig' %}
+
+
+{% block title %}Réservation{% endblock %}
+
+{% block body %}
+  {{ form_start(form, {'attr': {'id': 'booking-form'}}) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.prenom) }}
+    {{ form_row(form.personne) }}
+    {{ form_row(form.allergy) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.heure) }}
+
+    <button type="submit">Réserver</button>
+  {{ form_end(form) }}
+
+{% endblock %}

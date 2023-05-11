@@ -27,32 +27,46 @@ import './bootstrap';
 
 
 
-// Récupération de l'élément HTML du formulaire de réservation
 const bookingForm = document.getElementById('booking-form');
 
 // Ajout d'un listener sur l'événement "submit" du formulaire
 bookingForm.addEventListener('submit', function(event) {
-  // Empêcher le comportement par défaut de l'événement "submit"
   event.preventDefault();
 
-  // Récupération des données du formulaire
   const formData = new FormData(bookingForm);
 
-  // Envoi d'une requête AJAX au serveur
-  fetch('/reservation/disponibilite', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
+  // Envoi d'une requête AJAX pour vérifier la disponibilité et soumettre la réservation
+  Promise.all([
+    fetch('/reservation/disponibilite', {
+      method: 'POST',
+      body: formData
+    }),
+    fetch('/reservation/submit', {
+      method: 'POST',
+      body: formData
+    })
+  ])
+  .then(responses => Promise.all(responses.map(response => response.json())))
   .then(data => {
-    // Mise à jour de l'interface utilisateur en fonction de la réponse JSON
-    if (data.disponible) {
+    const disponibiliteData = data[0];
+    const reservationData = data[1];
+
+    if (disponibiliteData.disponibilite) {
       alert('Des tables sont disponibles pour cette date et cette heure !');
     } else {
       alert('Désolé, il n\'y a plus de tables disponibles pour cette date et cette heure.');
     }
+
+    if (reservationData.status === 'success') {
+      alert('Votre réservation a été enregistrée.');
+    } else {
+      alert('Erreur lors de la réservation.');
+    }
   })
-  .catch(error => console.error(error));
+  .catch(error => {
+    console.error(error);
+    alert('Une erreur est survenue lors de la réservation.');
+  });
 });
 
 
