@@ -13,16 +13,13 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(OpeningTimeRepository $openingTimeRepository): Response
     {
-        return $this->render('home/home.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
- {
         $openingTimes = $openingTimeRepository->findAll();
 
-        return $this->render('base/footer.html.twig', [
+        return $this->render('home/home.html.twig', [
+            'controller_name' => 'HomeController',
             'openingTimes' => $openingTimes,
         ]);
-    }
+ 
 }
     
 }

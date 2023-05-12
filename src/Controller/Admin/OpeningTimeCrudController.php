@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 
 class OpeningTimeCrudController extends AbstractCrudController
 {
@@ -25,6 +26,7 @@ class OpeningTimeCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            IdField::new('id')->hideOnForm(),
             TextField::new('jour'),
             TimeField::new('ouverture')->setFormat('HH:mm'),
             TimeField::new('fermeture')->setFormat('HH:mm'),

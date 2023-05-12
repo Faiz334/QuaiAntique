@@ -31,7 +31,6 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $entity = $event->getEntityInstance();
 
         if ($entity instanceof User
-            || $entity instanceof Image
             || $entity instanceof OpeningTime
             || $entity instanceof Dish
             || $entity instanceof Menu
@@ -53,7 +52,6 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $entity = $event->getEntityInstance();
 
         if ($entity instanceof User
-            || $entity instanceof Image
             || $entity instanceof OpeningTime
             || $entity instanceof Dish
             || $entity instanceof Menu

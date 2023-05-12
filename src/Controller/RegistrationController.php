@@ -13,6 +13,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use App\Repository\OpeningTimeRepository;
 
 class RegistrationController extends AbstractController
 {
@@ -20,7 +21,7 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher,
         UserAuthenticatorInterface $userAuthenticator,
         AppAuthenticator $authenticator,
-        EntityManagerInterface $entityManager): Response
+        EntityManagerInterface $entityManager, OpeningTimeRepository $openingTimeRepository): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -45,9 +46,11 @@ class RegistrationController extends AbstractController
                 $request
             );
         }
+        $openingTimes = $openingTimeRepository->findAll();
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'openingTimes' => $openingTimes,
         ]);
     }
 }

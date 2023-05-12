@@ -6,7 +6,7 @@
           <h3 class="address-title mbr-fonts-style pb-2 text-center display-5">Adresse</h3>
           <p class="address-block mbr-fonts-style pb-3 text-center display-7">
             12 rue Gomet<br>
-            Paris, 75000
+            Chambéry, 73000
           </p>
            <h3 class="email-title mbr-fonts-style pb-2 text-center display-5">Email</h3>
           <p class="Email-block mbr-fonts-style pb-3 text-center display-7">
@@ -18,14 +18,10 @@
       <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 opening-hours pb-3 text-center">
         <h3 class="opening-hours-title pb-3 mbr-fonts-style text-center display-5">Horaires</h3>
           <ul>
-            <li>Lundi : 11:00 - 21:00</li>
-            <li>Mardi : 11:00 - 21:00</li>
-            <li>Mercredi : 11:00 - 21:00</li>
-            <li>Jeudi : 11:00 - 21:00</li>
-            <li>Vendredi : 11:00 - 21:00</li>
-            <li>Samedi : 11:00 - 21:00</li>
-            <li>Dimanche : 11:00 - 21:00</li>
-          </ul>
+    {% for openingTime in openingTimes %}
+      <li>{{ openingTime.jour }} : {{ openingTime.ouverture.format('H:i') }} - {{ openingTime.fermeture.format('H:i') }}</li>
+    {% endfor %}
+  </ul>
       </div>
       <div class="form-1 col-sm-12 col-md-5 col-xl-4 col-lg-3" data-form-type="formoid">
         <h3 class="form-title pb-3 mbr-fonts-style text-center display-5">Contact</h3>

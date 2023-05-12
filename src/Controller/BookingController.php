@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
+use App\Entity\User;
 use App\Form\BookingType;
 use DateTime;
+use App\Entity\OpeningTime;
+use App\Repository\OpeningTimeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookingController extends AbstractController
 {
     #[Route('/reservation', name: 'app_booking')]
-    public function index(Request $request, PersistenceManagerRegistry $doctrine): Response
+    public function index(Request $request, PersistenceManagerRegistry $doctrine, OpeningTimeRepository $openingTimeRepository): Response
     {
         $booking = new Booking();
 
@@ -43,6 +46,7 @@ class BookingController extends AbstractController
 
         return $this->render('booking/booking.html.twig', [
             'form' => $form->createView(),
+            'openingTimes' => $openingTimeRepository->findAll(),
         ]);
     }
 }

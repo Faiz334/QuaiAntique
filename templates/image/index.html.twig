@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-
-<title>Hello ImageController!</title>
+{% extends 'base/base.html.twig' %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container2">
+        <h1>Galerie d'images</h1>
+        <p>Plats favoris du Grand Chef Michant</p>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/olmah/Desktop/ECF2/quaiAntique/src/Controller/ImageController.php'|file_link(0) }}">src/Controller/ImageController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/olmah/Desktop/ECF2/quaiAntique/templates/image/index.html.twig'|file_link(0) }}">templates/image/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="gallery">
+        <div class="grid-container">
+            {% for image in images %}
+                <div class="grid-item">
+                    <img src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.titre }}">
+                    <div class="title">{{ image.titre }}</div>
+                </div>
+       {% endfor %}     
+    </div>
 {% endblock %}
