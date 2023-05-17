@@ -35,7 +35,7 @@ class BookingType extends AbstractType
             ->add('prenom', null, [
                 'data' => $user ? $user->getPrenom() : null, // Pré-remplissage du champ "prenom" avec le prénom de l'utilisateur connecté
             ])
-            ->add('personne', null, [
+            ->add('personne', null, ["label" => "Nombre de personnes ?",
                 'constraints' => [
                     new Range([
                         'min' => 1,
@@ -44,14 +44,19 @@ class BookingType extends AbstractType
                         'maxMessage' => 'Le nombre de personnes ne peut pas dépasser {{ limit }}.',
                     ]),
                 ], ])
-            ->add('allergy', TextareaType::class)
+            ->add('allergy', TextareaType::class,[
+                'label' => 'Allergie à signaler?',
+                'required' => false,
+            ])
             ->add('date', DateType::class, [
-                'format' => 'dd-MM-yyyy',
+                'widget' => 'single_text',
+                'required' => true,
                 'constraints' => [
                     new Callback([$this, 'validateDate']),
                 ],
             ])
             ->add('heure', TimeType::class, [
+                'label' => 'Choisissez un créneau de réservation',
                 'input' => 'datetime',
                 'hours' => range(12, 20), // Plage d'heures de 12 à 20
                 'minutes' => range(0, 45, 15), // Plage de minutes de 0 à 45 par pas de 15

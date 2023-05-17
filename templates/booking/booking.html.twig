@@ -4,15 +4,25 @@
 {% block title %}Réservation{% endblock %}
 
 {% block body %}
-  {{ form_start(form, {'attr': {'id': 'booking-form'}}) }}
-    {{ form_row(form.nom) }}
-    {{ form_row(form.prenom) }}
-    {{ form_row(form.personne) }}
-    {{ form_row(form.allergy) }}
-    {{ form_row(form.date) }}
-    {{ form_row(form.heure) }}
-
-    <button type="submit">Réserver</button>
-  {{ form_end(form) }}
-
+<div class="mask d-flex align-items-center h-100 gradient-custom-3 p-5 ">
+    <div class="container p-5 h-100">
+          <div class="card p-5 bg-dark" style="border-radius: 15px;">
+            <div class="card-body p-5">
+             <h2 class="text-uppercase text-center mb-5">RESERVATION</h2>
+               {{ form_start(form, {'attr': {'id': 'booking-form'}}) }}
+                 {{ form_row(form.nom) }}
+                 {{ form_row(form.prenom) }}
+                 {{ form_row(form.personne) }}
+                 {{ form_row(form.allergy) }}
+                 {{ form_row(form.date) }}
+                 {{ form_row(form.heure) }}
+              <br>
+              <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-primary ">Réserver</button>
+              {{ form_end(form) }}
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
 {% endblock %}

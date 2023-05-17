@@ -1,14 +1,27 @@
 @import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Numans&family=Playfair+Display&display=swap');
+
+
 
 
 body {
     background-color: rgb(43, 43, 43);
+    color: antiquewhite;
+    font-family: 'Playfair Display', sans-serif;
 }
+
+.nav{
+  background-color: beige;
+}
+
+.navbar-nav .nav-link {
+  color: antiquewhite !important;
+}
+
 li {
     list-style-type: none;
   }
-
-  
 
   .container2 {
     display: flex;
@@ -29,11 +42,11 @@ li {
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white;
+    color: antiquewhite;
   }
 
   .footer{
-    color: white;
+    color: antiquewhite;
   }
 
   .bg-image-vertical {
@@ -67,7 +80,12 @@ li {
   .grid-item img {
       width: 100%;
       height: auto;
+      transition: transform 0.3s ease;
   }
+
+  .grid-item:hover img {
+    transform: scale(1.05);
+}
   
   .title {
       position: absolute;
@@ -75,9 +93,11 @@ li {
       left: 0;
       right: 0;
       background-color: rgba(0, 0, 0, 0.7);
-      color: white;
+      color: antiquewhite;
       padding: 10px;
   }
+
+
   
     
     $container-max-widths: (

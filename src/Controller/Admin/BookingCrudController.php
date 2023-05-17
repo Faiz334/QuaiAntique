@@ -29,9 +29,10 @@ class BookingCrudController extends AbstractCrudController
     {
         return [
             
-            TextField::new('nom'),
-            TextField::new('prenom'),
-            IntegerField::new('personne')->setFormTypeOptions([
+            TextField::new('nom')->setLabel('Nom'),
+            TextField::new('prenom')->setLabel('Prenom'),
+            IntegerField::new('personne')->setLabel('Personne(s) (max 15)')
+            ->setFormTypeOptions([
                 'attr' => [
                     'min' => 1,
                     'max' => 15
@@ -39,7 +40,7 @@ class BookingCrudController extends AbstractCrudController
             ]),
             DateField::new('date'),
             TimeField::new('heure')->setFormat('HH:mm'),
-            TextField::new('allergy'),
+            TextField::new('allergy')->setLabel('Allergie'),
         ];
     }
     
