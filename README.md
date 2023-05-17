@@ -36,3 +36,4 @@ composer require symfony/web-server-bundle --dev
 php bin/console server:start
 
 compte : admin = admin@admin.fr mdp=admin33
+         client = client@client.fr mdp= user33
