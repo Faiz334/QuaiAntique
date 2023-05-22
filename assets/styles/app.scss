@@ -1,6 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Numans&family=Playfair+Display&display=swap');
 
 
 
@@ -34,7 +33,7 @@ li {
   }
  
   .jumbotron {
-    background-image: url('https://www.pieuvre.ca/wp-content/uploads/2016/06/restaurant2-1.jpg');
+    background-image: url('/public/img/restaurant2-1.jpg');
     background-size: cover;
     height: 100vh;
     display: flex;

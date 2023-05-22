@@ -3,11 +3,10 @@
 {% block title %}Créer un compte{% endblock %}
 
 {% block body %}
-<br>
   <div class="mask d-flex align-items-center h-100 gradient-custom-3 p-5 ">
-    <div class="container p-5 h-100">
+    <div class="container p-5 h-100 col-md-6">
           <div class="card p-5 bg-dark" style="border-radius: 15px;">
-            <div class="card-body p-5">
+            <div class="card-body">
               <h2 class="text-uppercase text-center mb-5">Création de compte</h2>
      
         {{ form_start(registrationForm) }}
@@ -30,7 +29,7 @@
             }) }}
         </div>
         <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary ">S'inscrire</button>
+            <button type="submit" class="btn btn-warning ">S'inscrire</button>
         {{ form_end(registrationForm) }}
     </div>
     <p class="text-center text-muted mt-5 mb-0">Déjà un compte? <a href="{{ path('app_login') }}"
