@@ -10,6 +10,8 @@ import './styles/app.scss';
 
 import '@fortawesome/fontawesome-free/css/all.css';
 
+import { Loader } from "@googlemaps/js-api-loader"
+
 
 import jquery from 'jquery';
 const $ = require('jquery');
@@ -28,3 +30,30 @@ $(document).ready(function() {
     $('.navbar-collapse').collapse('toggle');
   });
 });
+
+// GOOGLE MAP
+function initMap() {
+  // Coordonnées du lieu
+  var addressLatLng = {lat: 45.5664, lng: 5.9210}; // Coordonnées de l'adresse
+
+  // Options de la carte
+  var mapOptions = {
+    zoom: 14,
+    center: addressLatLng
+  };
+
+  // Création de la carte
+  var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+  // Marqueur sur la carte
+
+  var marker = new google.maps.Marker({
+    position: addressLatLng,
+    map: map,
+    title: "2 Rue Favre, Chambéry"
+  });
+}
+
+
+// Appel de la fonction initMap une fois la page chargée
+window.onload = initMap;
