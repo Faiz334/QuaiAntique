@@ -12,6 +12,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 import { Loader } from "@googlemaps/js-api-loader"
 
+import { gsap } from 'gsap';
 
 import jquery from 'jquery';
 const $ = require('jquery');
@@ -24,7 +25,7 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 import './bootstrap';
 
 
-
+// Toggle
 $(document).ready(function() {
   $('.navbar-toggler').click(function() {
     $('.navbar-collapse').collapse('toggle');
@@ -57,3 +58,17 @@ function initMap() {
 
 // Appel de la fonction initMap une fois la page chargée
 window.onload = initMap;
+
+
+// Animation Texte
+
+const jumbotron = document.querySelector('.jumbotron');
+const title = jumbotron.querySelector('h1');
+const lead1 = jumbotron.querySelector('.lead:nth-child(2)');
+const lead2 = jumbotron.querySelector('.lead:nth-child(3)');
+
+gsap.fromTo(jumbotron, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, ease: 'power4.out' });
+gsap.fromTo(title, { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power4.out' });
+gsap.fromTo(lead1, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 1, delay: 0.6, ease: 'power4.out' });
+gsap.fromTo(lead2, { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 1, delay: 0.9, ease: 'power4.out' });
+
