@@ -8,6 +8,7 @@ parameters:
 
 services:
     App\EventSubscriber\EasyAdminSubscriber:
+    App\Repository\OpeningTimeRepository: 
         tags:
             - { name: kernel.event_subscriber }
     # default configuration for services in *this* file

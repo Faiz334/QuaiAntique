@@ -14,6 +14,8 @@ import { Loader } from "@googlemaps/js-api-loader"
 
 import { gsap } from 'gsap';
 
+import Swal from 'sweetalert2';
+
 import jquery from 'jquery';
 const $ = require('jquery');
 global.$ = global.jQuery = $;
@@ -72,3 +74,4 @@ gsap.fromTo(title, { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 1, dela
 gsap.fromTo(lead1, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 1, delay: 0.6, ease: 'power4.out' });
 gsap.fromTo(lead2, { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 1, delay: 0.9, ease: 'power4.out' });
 
+// 

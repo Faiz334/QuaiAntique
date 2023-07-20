@@ -1,6 +1,10 @@
 {%extends 'base/base.html.twig'%}
 {% block body %}
 
+{% for flashMessage in app.flashes('success') %}
+    <div class="alert alert-success">{{ flashMessage }}</div>
+{% endfor %}
+
 <div class="jumbotron jumbotron-fluid">
 <div class="imghome">
   <div class="container text-center">
@@ -9,6 +13,7 @@
     <p class="lead">Notre chef utilise des ingrédients frais et locaux pour créer des plats savoureux et inspirants qui raviront vos papilles.</p>
     <a class="btn btn-warning text-black btn-lg" href="{{ path('app_booking') }}" role="button">Réservation</a>
   </div>
+  <br>
   </div>
 </div>
   <div id="map"></div>

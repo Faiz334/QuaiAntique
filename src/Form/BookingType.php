@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Booking;
+use App\Repository\OpeningTimeRepository;
+use App\Validator\Constraints\OpeningTimeConstraint;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -18,10 +20,12 @@ use Symfony\Component\Validator\Constraints\Callback;
 class BookingType extends AbstractType
 {
     private $security;
+    private $openingTimeRepository;
 
-    public function __construct(Security $security)
+    public function __construct(Security $security,OpeningTimeRepository $openingTimeRepository)
     {
         $this->security = $security;
+        
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -56,10 +60,13 @@ class BookingType extends AbstractType
                 ],
             ])
             ->add('heure', TimeType::class, [
-                'label' => 'Choisissez un créneau de réservation',
-                'input' => 'datetime',
-                'hours' => range(12, 20), // Plage d'heures de 12 à 20
-                'minutes' => range(0, 45, 15), // Plage de minutes de 0 à 45 par pas de 15
+                'widget' => 'single_text', // Utilisez 'single_text' pour afficher un champ de saisie simple
+                'html5' => true, // Utilisez l'option HTML5 pour le champ de temps
+                'input' => 'datetime', // Utilisez 'datetime' pour obtenir une instance DateTime
+                'minutes' => [0, 15, 30, 45], // Spécifiez les valeurs disponibles pour les minutes
+                'constraints' => [
+                    new Callback([$this, 'validateHeure']),
+                ],
             ]);
     }
 
@@ -82,21 +89,20 @@ class BookingType extends AbstractType
 
     public function validateHeure($heure, ExecutionContextInterface $context)
     {
-        $timeSlots = $this->generateTimeSlots();
-        $selectedTime = $heure->format('H:i');
+        // Heures d'ouverture et de fermeture au format "H:i"
+        $heureOuverture = "12:00";
+        $heureFermeture = "20:00";
 
-        if (!in_array($selectedTime, $timeSlots)) {
-            $context->buildViolation('Heure invalide')
-                ->atPath('heure')
-                ->addViolation();
-        }
+        $heureSelectionnee = $heure->format('H:i');
+        $heureOuverture = \DateTime::createFromFormat('H:i', $heureOuverture);
+        $heureFermeture = \DateTime::createFromFormat('H:i', $heureFermeture);
 
-        $lastTimeSlot = array_key_last($timeSlots);
-        if ($selectedTime === $lastTimeSlot) {
-            $context->buildViolation('Aucune réservation n\'est acceptée pour la dernière heure avant la fermeture')
+        if ($heureSelectionnee < $heureOuverture->format('H:i') || $heureSelectionnee > $heureFermeture->format('H:i')) {
+            $context->buildViolation('Réservation en dehors des horaires d\'ouverture.')
                 ->atPath('heure')
                 ->addViolation();
         }
     }
+
 
 }

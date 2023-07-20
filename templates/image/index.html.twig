@@ -9,9 +9,11 @@
         <div class="grid-container">
             {% for image in images %}
                 <div class="grid-item">
-                    <img src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.titre }}">
+                    <img src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.titre }}" >
                     <div class="title">{{ image.titre }}</div>
                 </div>
        {% endfor %}     
     </div>
+    <br>
+        <a class="btn btn-warning text-black btn-lg" href="{{ path('app_booking') }}" role="button">Réservation</a>
 {% endblock %}

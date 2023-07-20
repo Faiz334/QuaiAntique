@@ -2,8 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 
-
-
 body {
     background-color: rgb(43, 43, 43);
     color: antiquewhite;
@@ -11,7 +9,7 @@ body {
 }
 
 .nav{
-  background-color: beige;
+  background-color: antiquewhite;
 }
 
 .navbar-nav .nav-link {
@@ -62,7 +60,7 @@ li {
     }
 
     .follows-button {
-      font-size: 18px; /* Ajustez la taille de police selon vos besoins */
+      font-size: 18px; /* Ajustez la taille des icones*/
     }
 
     .gallery {
@@ -91,7 +89,7 @@ li {
     transform: scale(1.05);
 }
 
-  #map {
+  #map { /* Taille MAP  */
   height: 400px;
   width: 100%;
 }

@@ -27,6 +27,7 @@
         "bootstrap": "^5.2.3",
         "gsap": "^3.12.1",
         "jquery": "^3.6.4",
-        "popper.js": "^1.16.1"
+        "popper.js": "^1.16.1",
+        "sweetalert2": "^11.7.18"
     }
 }

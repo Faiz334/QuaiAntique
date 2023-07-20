@@ -4,12 +4,12 @@ controllers:
         namespace: App\Controller
     type: attribute
 
-app_booking_disponibilite:
-    path: /reservation/disponibilite
-    controller: App\Controller\BookingController::disponibilite
-    methods: [POST]
-
 app_booking_submit:
     path: /reservation/submit
     controller: App\Controller\BookingController::submit
     methods: [POST]
+
+check_reservation:
+    path: /reservation/check-reservation
+    controller: App\Controller\BookingController::checkReservation
+    methods: [GET]
