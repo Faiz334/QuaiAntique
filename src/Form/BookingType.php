@@ -30,6 +30,20 @@ class BookingType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+         // Initialiser la date avec l'heure de départ
+        $heure = new \DateTime('12:00');
+            
+        // Tableau pour stocker les choix d'heure
+        $choices = [];
+            
+        // Boucler pour créer les choix avec des intervalles de 15 minutes
+        for ($i = 0; $i < 33; $i++) { // 33 choix pour couvrir jusqu'à 20h
+            // Ajouter l'heure actuelle comme choix avec le format HH:MM
+            $choices[$heure->format('H:i')] = clone $heure;
+            
+            // Ajouter 15 minutes pour l'itération suivante
+            $heure->modify('+15 minutes');
+} 
         $user = $this->security->getUser(); // Récupération de l'utilisateur connecté
 
         $builder
@@ -59,11 +73,8 @@ class BookingType extends AbstractType
                     new Callback([$this, 'validateDate']),
                 ],
             ])
-            ->add('heure', TimeType::class, [
-                'widget' => 'single_text', // Utilisez 'single_text' pour afficher un champ de saisie simple
-                'html5' => true, // Utilisez l'option HTML5 pour le champ de temps
-                'input' => 'datetime', // Utilisez 'datetime' pour obtenir une instance DateTime
-                'minutes' => [0, 15, 30, 45], // Spécifiez les valeurs disponibles pour les minutes
+            ->add('heure', ChoiceType::class, [
+                'choices' => $choices,
                 'constraints' => [
                     new Callback([$this, 'validateHeure']),
                 ],
@@ -106,3 +117,4 @@ class BookingType extends AbstractType
 
 
 }
+

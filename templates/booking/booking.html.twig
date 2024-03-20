@@ -44,10 +44,13 @@
         // Script pour vérifier la disponibilité de la réservation et afficher une alerte
         function checkReservation() {
             const dateValue = document.getElementById('booking_date').value;
-            const heureValue = document.getElementById('booking_heure').value;
-            
+            const heureElement = document.getElementById('booking_heure');
+            const heureValue = heureElement.options[heureElement.selectedIndex].text;
 
-            const url = "/reservation/check-reservation?date=" + dateValue + "&heure=" + heureValue;
+            // Formatage de la valeur de l'heure au format HH:MM
+            const formattedHeureValue = heureValue.substring(0, 5);
+    
+            const url = "/reservation/check-reservation?date=" + dateValue + "&heure=" + formattedHeureValue;
 
             fetch(url)
                 .then(response => response.json())
